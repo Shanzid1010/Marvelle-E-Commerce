@@ -1,0 +1,70 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "A product available for sale in the store.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The name of the product."
+        },
+        "category": {
+          "type": "string",
+          "description": "The category of the product (e.g., Beauty, Bags, Cosmetics, Watches)."
+        },
+        "price": {
+          "type": "number",
+          "description": "The original price of the product."
+        },
+        "discountPercentage": {
+          "type": "number",
+          "description": "The discount percentage applied to the product (0-100)."
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "The URL of the product image."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the product was added."
+        }
+      },
+      "required": ["title", "category", "price", "imageUrl", "createdAt"]
+    },
+    "User": {
+      "title": "User",
+      "description": "A user of the application.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The user's email address."
+        },
+        "role": {
+          "type": "string",
+          "enum": ["admin", "customer"],
+          "description": "The role of the user."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the user was created."
+        }
+      },
+      "required": ["email", "role", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Stores all products available in the store."
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores user profiles and roles."
+    }
+  }
+}
