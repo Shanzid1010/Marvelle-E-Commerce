@@ -105,7 +105,7 @@ function AppContent() {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center gap-3">
               {/* Replace the src with your uploaded logo URL */}
-              <img src="https://github.com/Shanzid1010/Marvelle-E-Commerce/blob/main/web%20logo.png?raw=true" alt="Marvelle Logo" className="h-8 object-contain" />
+              <img src="https://github.com/Shanzid1010/Marvelle-E-Commerce/blob/main/web%20logo.png?raw=true" alt="Marvelle Logo" className="h-10 object-contain" />
             </div>
 
             {/* Desktop Menu */}
