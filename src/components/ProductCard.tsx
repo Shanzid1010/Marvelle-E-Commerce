@@ -5,10 +5,10 @@ import { Tag, Edit2 } from 'lucide-react';
 interface ProductCardProps {
   product: Product;
   isAdmin: boolean;
-  onEditDiscount: (product: Product) => void;
+  onEditProduct: (product: Product) => void;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, isAdmin, onEditDiscount }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, isAdmin, onEditProduct }) => {
   const hasDiscount = product.discountPercentage && product.discountPercentage > 0;
   const discountedPrice = hasDiscount
     ? product.price - (product.price * (product.discountPercentage! / 100))
@@ -25,9 +25,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, isAdmin, onEd
       
       {isAdmin && (
         <button
-          onClick={() => onEditDiscount(product)}
+          onClick={() => onEditProduct(product)}
           className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-slate-700 p-2 rounded-full z-10 shadow-sm hover:bg-slate-100 transition-colors"
-          title="Edit Discount"
+          title="Edit Product"
         >
           <Edit2 size={16} />
         </button>

@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
+import { collection, addDoc, doc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 import { handleFirestoreError, OperationType } from '../utils/errorHandling';
-import { Plus, X } from 'lucide-react';
+import { Plus, Edit2, X, Trash2 } from 'lucide-react';
+import { Product } from '../types';
 
 interface AdminPanelProps {
   onClose: () => void;
+  productToEdit?: Product | null;
 }
 
-export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
+export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, productToEdit }) => {
   const [loading, setLoading] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     category: 'Skin Care',
@@ -17,6 +20,18 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
     imageUrl: '',
     discountPercentage: '0'
   });
+
+  useEffect(() => {
+    if (productToEdit) {
+      setFormData({
+        title: productToEdit.title,
+        category: productToEdit.category,
+        price: productToEdit.price.toString(),
+        imageUrl: productToEdit.imageUrl,
+        discountPercentage: (productToEdit.discountPercentage || 0).toString()
+      });
+    }
+  }, [productToEdit]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,14 +44,33 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
         price: Number(formData.price),
         discountPercentage: Number(formData.discountPercentage),
         imageUrl: formData.imageUrl,
-        createdAt: serverTimestamp()
       };
 
-      await addDoc(collection(db, 'products'), productData);
+      if (productToEdit) {
+        const productRef = doc(db, 'products', productToEdit.id);
+        await updateDoc(productRef, productData);
+      } else {
+        await addDoc(collection(db, 'products'), {
+          ...productData,
+          createdAt: serverTimestamp()
+        });
+      }
       onClose();
     } catch (error) {
-      handleFirestoreError(error, OperationType.CREATE, 'products');
+      handleFirestoreError(error, productToEdit ? OperationType.UPDATE : OperationType.CREATE, 'products');
     } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!productToEdit) return;
+    setLoading(true);
+    try {
+      await deleteDoc(doc(db, 'products', productToEdit.id));
+      onClose();
+    } catch (error) {
+      handleFirestoreError(error, OperationType.DELETE, 'products');
       setLoading(false);
     }
   };
@@ -45,7 +79,9 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
     <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in duration-200">
         <div className="flex justify-between items-center p-6 border-b border-slate-100">
-          <h2 className="text-xl font-bold text-slate-800">Add New Product</h2>
+          <h2 className="text-xl font-bold text-slate-800">
+            {productToEdit ? 'Edit Product' : 'Add New Product'}
+          </h2>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-600 transition-colors">
             <X size={24} />
           </button>
@@ -126,16 +162,53 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
               disabled={loading}
               className="w-full bg-rose-600 hover:bg-rose-700 text-white font-medium py-3 rounded-xl transition-colors flex items-center justify-center gap-2 disabled:opacity-70"
             >
-              {loading ? (
+              {loading && !showDeleteConfirm ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               ) : (
                 <>
-                  <Plus size={20} />
-                  Add Product
+                  {productToEdit ? <Edit2 size={20} /> : <Plus size={20} />}
+                  {productToEdit ? 'Save Changes' : 'Add Product'}
                 </>
               )}
             </button>
           </div>
+
+          {productToEdit && (
+            <div className="pt-2 mt-2">
+              {showDeleteConfirm ? (
+                <div className="bg-red-50 p-4 rounded-xl border border-red-100">
+                  <p className="text-sm text-red-800 mb-3 font-medium text-center">Are you sure you want to delete this product?</p>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={handleDelete}
+                      disabled={loading}
+                      className="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-2 rounded-lg transition-colors text-sm flex justify-center items-center"
+                    >
+                      {loading ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : 'Yes, Delete'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowDeleteConfirm(false)}
+                      disabled={loading}
+                      className="flex-1 bg-white hover:bg-slate-50 text-slate-700 font-medium py-2 rounded-lg border border-slate-200 transition-colors text-sm"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setShowDeleteConfirm(true)}
+                  className="w-full flex items-center justify-center gap-2 text-red-600 hover:bg-red-50 font-medium py-3 rounded-xl transition-colors"
+                >
+                  <Trash2 size={20} />
+                  Delete Product
+                </button>
+              )}
+            </div>
+          )}
         </form>
       </div>
     </div>

@@ -6,7 +6,6 @@ import { Product, UserProfile } from './types';
 import { handleFirestoreError, OperationType } from './utils/errorHandling';
 import { ProductCard } from './components/ProductCard';
 import { AdminPanel } from './components/AdminPanel';
-import { DiscountModal } from './components/DiscountModal';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { ShoppingBag, LogIn, LogOut, Plus, Search, Menu, X, MapPin } from 'lucide-react';
 
@@ -106,7 +105,7 @@ function AppContent() {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center gap-3">
               {/* Replace the src with your uploaded logo URL */}
-              <img src="https://github.com/Shanzid1010/Marvelle-E-Commerce/blob/main/web%20logo.png?raw=true" alt="Marvelle Logo" className="h-10 object-contain" />
+              <img src="https://placehold.co/100x40/ffffff/e11d48?text=Marvelle" alt="Marvelle Logo" className="h-10 object-contain" />
             </div>
 
             {/* Desktop Menu */}
@@ -318,7 +317,7 @@ function AppContent() {
                 key={product.id} 
                 product={product} 
                 isAdmin={isAdmin}
-                onEditDiscount={setEditingProduct}
+                onEditProduct={setEditingProduct}
               />
             ))}
           </div>
@@ -399,7 +398,7 @@ function AppContent() {
 
       {/* Modals */}
       {showAdminPanel && <AdminPanel onClose={() => setShowAdminPanel(false)} />}
-      {editingProduct && <DiscountModal product={editingProduct} onClose={() => setEditingProduct(null)} />}
+      {editingProduct && <AdminPanel productToEdit={editingProduct} onClose={() => setEditingProduct(null)} />}
     </div>
   );
 }
