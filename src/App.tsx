@@ -110,7 +110,7 @@ function AppContent() {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center gap-3">
               {/* Replace the src with your uploaded logo URL */}
-              <img src="https://github.com/Shanzid1010/Marvelle-E-Commerce/blob/main/web%20logo.png?raw=true" alt="Marvelle Logo" className="h-10 object-contain" />
+              <img src="https://scontent.fdac189-1.fna.fbcdn.net/v/t39.30808-6/649324237_122214582788347251_8489792486448816812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_ohc=YwzfwVevyPUQ7kNvwF9Ro36&_nc_oc=Adks0mUo3C7fHVCTMl9-riufayNtxn67ptcsXsXN2ubvg-0iqugJuza9QWMHaH0s3pw&_nc_zt=23&_nc_ht=scontent.fdac189-1.fna&_nc_gid=GqQO0zmADfS6ncpH1LM7Hw&_nc_ss=8&oh=00_Afzy1fj8a9lizDmeYBm0YUDRp-9sANXOVTAtHH_A-q5r_A&oe=69BA1B47" alt="Marvelle Logo" className="h-10 object-contain" />
             </div>
 
             {/* Desktop Menu */}
@@ -282,7 +282,7 @@ function AppContent() {
       {/* Marketing Banner Section */}
       <div className="w-full bg-slate-100 relative">
         <img 
-          src="https://github.com/Shanzid1010/Marvelle-E-Commerce/blob/main/final%20web%20banner.png?raw=true" 
+          src="https://scontent.fdac189-1.fna.fbcdn.net/v/t39.30808-6/650258821_122214582686347251_7152517670965953034_n.jpg?stp=dst-jpg_s2048x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=13d280&_nc_ohc=6EL9sMOGth4Q7kNvwE9olYP&_nc_oc=AdlTclpkpdDYbFUFjH5IpQSGllDDCaj1Ka_U0XLwT2INiV0D5ZHhsSg6s7s9wsTKTgk&_nc_zt=23&_nc_ht=scontent.fdac189-1.fna&_nc_gid=rkfrYMqmPI4nT6wKu-jdHw&_nc_ss=8&oh=00_Afy3mKQgjVrweVabZNV1B69pzvHZ8weIFDASvWuSwDKffg&oe=69B9E874" 
           alt="Special Offer Banner" 
           className="w-full h-64 md:h-96 object-cover"
           referrerPolicy="no-referrer"
