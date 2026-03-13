@@ -282,7 +282,7 @@ function AppContent() {
       {/* Marketing Banner Section */}
       <div className="w-full bg-slate-100 relative">
         <img 
-          src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2000&auto=format&fit=crop" 
+          src="https://github.com/Shanzid1010/Marvelle-E-Commerce/blob/main/web%20banner%2001.png?raw=true" 
           alt="Special Offer Banner" 
           className="w-full h-64 md:h-96 object-cover"
           referrerPolicy="no-referrer"
