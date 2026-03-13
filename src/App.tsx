@@ -18,6 +18,8 @@ function AppContent() {
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const categories = ['All', 'Skin Care', 'Hair Care', 'Body Care', 'Bags', 'Cosmetics', 'Watches'];
 
@@ -90,9 +92,12 @@ function AppContent() {
     }
   };
 
-  const filteredProducts = activeCategory === 'All' 
-    ? products 
-    : products.filter(p => p.category === activeCategory);
+  const filteredProducts = products.filter(p => {
+    const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
+    const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          p.category.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   const isAdmin = userProfile?.role === 'admin' || user?.email === 'hossainmdshanzid@gmail.com';
 
@@ -105,7 +110,7 @@ function AppContent() {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center gap-3">
               {/* Replace the src with your uploaded logo URL */}
-              <img src="https://github.com/Shanzid1010/Marvelle-E-Commerce/blob/main/web%20logo.png?raw=true" alt="Marvelle Logo" className="h-10 object-contain" />
+              <img src="https://placehold.co/100x40/ffffff/e11d48?text=Marvelle" alt="Marvelle Logo" className="h-10 object-contain" />
             </div>
 
             {/* Desktop Menu */}
@@ -135,9 +140,34 @@ function AppContent() {
                 </button>
               )}
               
-              <button className="p-2 text-slate-400 hover:text-slate-600 transition-colors">
-                <Search size={20} />
-              </button>
+              <div className="flex items-center">
+                {isSearchOpen ? (
+                  <div className="flex items-center bg-slate-100 rounded-full px-3 py-1.5 animate-in fade-in slide-in-from-right-4 duration-200">
+                    <Search size={16} className="text-slate-400" />
+                    <input 
+                      type="text" 
+                      placeholder="Search products..." 
+                      className="bg-transparent border-none outline-none text-sm ml-2 w-40 lg:w-64"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      autoFocus
+                    />
+                    <button 
+                      onClick={() => { setIsSearchOpen(false); setSearchQuery(''); }} 
+                      className="text-slate-400 hover:text-slate-600 ml-1"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                ) : (
+                  <button 
+                    onClick={() => setIsSearchOpen(true)} 
+                    className="p-2 text-slate-400 hover:text-slate-600 transition-colors"
+                  >
+                    <Search size={20} />
+                  </button>
+                )}
+              </div>
               
               <button className="p-2 text-slate-400 hover:text-slate-600 transition-colors relative">
                 <ShoppingBag size={20} />
@@ -187,6 +217,16 @@ function AppContent() {
         {mobileMenuOpen && (
           <div className="md:hidden bg-white border-t border-slate-100 py-4 px-4 space-y-4 shadow-lg absolute w-full">
             <div className="flex flex-col space-y-3">
+              <div className="flex items-center bg-slate-100 rounded-xl px-4 py-2 mb-2">
+                <Search size={18} className="text-slate-400" />
+                <input 
+                  type="text" 
+                  placeholder="Search products..." 
+                  className="bg-transparent border-none outline-none text-sm ml-2 w-full"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
               {categories.map(category => (
                 <button
                   key={category}
@@ -239,38 +279,32 @@ function AppContent() {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <div className="relative bg-rose-50 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1615397323751-16951231b26c?q=80&w=2000&auto=format&fit=crop"
-            alt="Hero Background"
-            className="w-full h-full object-cover opacity-20"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-rose-100/90 to-transparent"></div>
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-          <div className="max-w-2xl">
-            <span className="inline-block py-1 px-3 rounded-full bg-rose-100 text-rose-700 text-sm font-semibold tracking-wide uppercase mb-4">
-              New Collection 2026
+      {/* Marketing Banner Section */}
+      <div className="w-full bg-slate-100 relative">
+        <img 
+          src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2000&auto=format&fit=crop" 
+          alt="Special Offer Banner" 
+          className="w-full h-64 md:h-96 object-cover"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent flex items-end">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 md:pb-12 w-full">
+            <span className="inline-block py-1 px-3 rounded-full bg-rose-500 text-white text-xs font-bold tracking-wide uppercase mb-3">
+              Special Offer
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight mb-6">
-              Discover Your <span className="text-rose-600 italic">True Beauty</span> with Marvelle
+            <h1 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight">
+              Discover Your True Beauty
             </h1>
-            <p className="text-lg text-slate-700 mb-8 max-w-xl leading-relaxed">
-              Explore our premium collection of beauty products, elegant bags, luxury cosmetics, and stunning watches. Elevate your everyday style.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button className="bg-slate-900 text-white px-8 py-4 rounded-full font-medium hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                Shop Now
-              </button>
-              <button className="bg-white text-slate-900 px-8 py-4 rounded-full font-medium hover:bg-slate-50 transition-all shadow-md border border-slate-100">
-                View Offers
-              </button>
-            </div>
           </div>
+        </div>
+      </div>
+
+      {/* Announcement Text */}
+      <div className="bg-rose-50 border-b border-rose-100 py-8 px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-slate-800 text-lg md:text-xl font-medium leading-relaxed">
+            You can now explore all of our products along with their prices. Customers are welcome to visit our showroom to purchase products directly. Our online shopping service will be launching very soon.
+          </p>
         </div>
       </div>
 
