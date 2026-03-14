@@ -303,7 +303,7 @@ function AppContent() {
       <div className="bg-rose-50 border-b border-rose-100 py-8 px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
           <p className="text-slate-800 text-lg md:text-xl font-medium leading-relaxed">
-            You can now explore all of our products along with their prices. Customers are welcome to visit our showroom to purchase products directly. Our online shopping service will be launching very soon.
+            You can now explore all of our products along with their prices. Customers are welcome to visit our showroom at "CENTREPOINT SHOPPING MALL" to purchase products directly. Our online shopping service will be launching very soon.
           </p>
         </div>
       </div>
