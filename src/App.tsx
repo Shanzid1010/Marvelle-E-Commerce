@@ -110,7 +110,7 @@ function AppContent() {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center gap-3">
               {/* Replace the src with your uploaded logo URL */}
-              <img src="https://scontent.fdac189-1.fna.fbcdn.net/v/t39.30808-6/649324237_122214582788347251_8489792486448816812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_ohc=YwzfwVevyPUQ7kNvwF9Ro36&_nc_oc=Adks0mUo3C7fHVCTMl9-riufayNtxn67ptcsXsXN2ubvg-0iqugJuza9QWMHaH0s3pw&_nc_zt=23&_nc_ht=scontent.fdac189-1.fna&_nc_gid=GqQO0zmADfS6ncpH1LM7Hw&_nc_ss=8&oh=00_Afzy1fj8a9lizDmeYBm0YUDRp-9sANXOVTAtHH_A-q5r_A&oe=69BA1B47" alt="Marvelle Logo" className="h-10 object-contain" />
+              <img src="https://scontent.fdac165-1.fna.fbcdn.net/v/t39.30808-6/649324237_122214582788347251_8489792486448816812_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_ohc=fqSlDw5kqOcQ7kNvwHzEcg7&_nc_oc=AdoIsDGrbjj6lm3eVVfKwEBdIGSFwolK4TtGw5ltJscMaotoiGi1d76VlfNdtJGr5oY&_nc_zt=23&_nc_ht=scontent.fdac165-1.fna&_nc_gid=iuZ4nFaGrIMihizpDTNp6Q&_nc_ss=7a3a8&oh=00_Af3StGwH8y5HLWQE6TCT8W9gwASShPJfmfsGIfUxS2-Cdg&oe=69E4F407" alt="Marvelle Logo" className="h-10 object-contain" />
             </div>
 
             {/* Desktop Menu */}
