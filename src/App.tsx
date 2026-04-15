@@ -282,7 +282,7 @@ function AppContent() {
       {/* Marketing Banner Section */}
       <div className="w-full bg-slate-100 relative">
         <img 
-          src="https://scontent.fdac189-1.fna.fbcdn.net/v/t39.30808-6/650258821_122214582686347251_7152517670965953034_n.jpg?stp=dst-jpg_s2048x2048_tt6&_nc_cat=100&ccb=1-7&_nc_sid=13d280&_nc_ohc=6EL9sMOGth4Q7kNvwE9olYP&_nc_oc=AdlTclpkpdDYbFUFjH5IpQSGllDDCaj1Ka_U0XLwT2INiV0D5ZHhsSg6s7s9wsTKTgk&_nc_zt=23&_nc_ht=scontent.fdac189-1.fna&_nc_gid=rkfrYMqmPI4nT6wKu-jdHw&_nc_ss=8&oh=00_Afy3mKQgjVrweVabZNV1B69pzvHZ8weIFDASvWuSwDKffg&oe=69B9E874" 
+          src="https://scontent.fdac184-1.fna.fbcdn.net/v/t39.30808-6/666048848_122119347051226063_3138119218497187677_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=103&ccb=1-7&_nc_sid=2a1932&_nc_eui2=AeEe6ovlFKgwdaARfBsd0rEtAEHsOJZObV8AQew4lk5tX3-LvIzB4q_8R_vImaWPeSfIbthIAo4rHhautKNaCChO&_nc_ohc=SQwJTf9fKiwQ7kNvwEI9ZR8&_nc_oc=AdpEpL_RI1E9-ilFK3B0ngdTBHnKvGAYtJQH4ndxLgmsUbgoo_O89zahb5XGzHYF-sc&_nc_zt=23&_nc_ht=scontent.fdac184-1.fna&_nc_gid=lhLrgM9Rr4IGrwxQyJ-j0w&_nc_ss=7a3a8&oh=00_Af0riwkD7EfuDthv7_hJoN8D1q-71eVioHrqu1lHSOjkxw&oe=69E4F0DA" 
           alt="Special Offer Banner" 
           className="w-full h-64 md:h-96 object-cover"
           referrerPolicy="no-referrer"
