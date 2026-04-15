@@ -305,6 +305,14 @@ function AppContent() {
           <p className="text-slate-800 text-lg md:text-xl font-medium leading-relaxed">
             You can now explore all of our products along with their prices. Customers are welcome to visit our showroom at "CENTREPOINT SHOPPING MALL" to purchase products directly. Our online shopping service will be launching very soon.
           </p>
+          <a 
+            href="https://forms.google.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center bg-rose-600 text-white px-10 py-4 rounded-full text-lg font-bold hover:bg-rose-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+          >
+            Order Now
+          </a>
         </div>
       </div>
 
