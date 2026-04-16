@@ -40,6 +40,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, isAdmin, onEd
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           referrerPolicy="no-referrer"
         />
+        {product.productCode && (
+          <div className="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-sm text-white text-xs font-mono px-2.5 py-1 rounded-md shadow-sm border border-white/10">
+            Code: {product.productCode}
+          </div>
+        )}
       </div>
 
       <div className="p-5">
