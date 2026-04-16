@@ -4,6 +4,7 @@ export interface Product {
   category: 'Skin Care' | 'Hair Care' | 'Body Care' | 'Bags' | 'Cosmetics' | 'Watches';
   price: number;
   discountPercentage?: number;
+  productCode?: string;
   imageUrl: string;
   createdAt: any; // Firestore Timestamp
 }
