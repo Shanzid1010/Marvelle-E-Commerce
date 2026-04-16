@@ -18,7 +18,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, productToEdit }
     category: 'Skin Care',
     price: '',
     imageUrl: '',
-    discountPercentage: '0'
+    discountPercentage: '0',
+    productCode: ''
   });
 
   useEffect(() => {
@@ -28,7 +29,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, productToEdit }
         category: productToEdit.category,
         price: productToEdit.price.toString(),
         imageUrl: productToEdit.imageUrl,
-        discountPercentage: (productToEdit.discountPercentage || 0).toString()
+        discountPercentage: (productToEdit.discountPercentage || 0).toString(),
+        productCode: productToEdit.productCode || ''
       });
     }
   }, [productToEdit]);
@@ -44,6 +46,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, productToEdit }
         price: Number(formData.price),
         discountPercentage: Number(formData.discountPercentage),
         imageUrl: formData.imageUrl,
+        productCode: formData.productCode,
       };
 
       if (productToEdit) {
@@ -142,6 +145,17 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, productToEdit }
                 placeholder="0"
               />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1">Product Code</label>
+            <input
+              type="text"
+              value={formData.productCode}
+              onChange={e => setFormData({...formData, productCode: e.target.value})}
+              className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-rose-500 transition-all outline-none"
+              placeholder="e.g. MV-101"
+            />
           </div>
 
           <div>
